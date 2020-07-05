@@ -1,5 +1,5 @@
 import React from "react";
-import Posts from "./components/Post";
+import Posts from "./components/Posts";
 
 const App = () => (
   <div>

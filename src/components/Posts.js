@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Post = () => {
+const Posts = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
@@ -15,4 +15,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default Posts;
