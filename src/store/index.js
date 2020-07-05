@@ -6,8 +6,4 @@ const initialState = {
   posts: [],
 };
 
-export default store = createStore(
-  rootReducer,
-  initialState,
-  applyMiddleware(thunk)
-);
+export default createStore(rootReducer, initialState, applyMiddleware(thunk));

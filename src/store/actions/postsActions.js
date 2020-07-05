@@ -23,7 +23,7 @@ export const addPost = ({ title, body }) => (dispatch) => {
     }),
   })
     .then((res) => res.json())
-    .then(
+    .then((res) =>
       dispatch({
         type: ADD_POST,
         payload: res,
