@@ -8,9 +8,13 @@ const Posts = () => {
       .then(setPosts)
       .catch(console.log);
   }, []);
+
   return (
     <div>
       <h1>Posts</h1>
+      {posts.map((post) => (
+        <p key={post.id}>{post.body}</p>
+      ))}
     </div>
   );
 };
