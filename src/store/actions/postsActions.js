@@ -1,7 +1,8 @@
 import { FETCH_POSTS, ADD_POST } from "../types";
+const API_URL = "https://jsonplaceholder.typicode.com/posts";
 
 export const fetchPosts = () => (dispatch) => {
-  fetch("https://jsonplaceholder.typicode.com/posts")
+  fetch(`${API_URL}?_limit=1`)
     .then((res) => res.json())
     .then((res) =>
       dispatch({
@@ -12,7 +13,7 @@ export const fetchPosts = () => (dispatch) => {
 };
 
 export const addPost = ({ title, body }) => (dispatch) => {
-  fetch("https://jsonplaceholder.typicode.com/posts", {
+  fetch(API_URL, {
     method: "POST",
     headers: {
       "content-type": "application/json",
