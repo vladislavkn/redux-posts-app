@@ -6,15 +6,22 @@ const PostForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch("https://jsonplaceholder.typicode.com/posts", {
-      method: "post",
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
       body: JSON.stringify({
         title: postTitle,
         body: postBody,
       }),
     })
       .then((res) => res.json())
-      .then(console.log)
-      .catch(console.log);
+      .then((res) => {
+        console.log(res);
+        setPostBody("");
+        setPostTitle("");
+      })
+      .catch(console.error);
   };
 
   return (
