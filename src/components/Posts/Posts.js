@@ -16,7 +16,12 @@ const Posts = ({ posts, fetchPosts, deletePost }) => {
         <div className={styles.post} key={index}>
           <h4>{post.title}</h4>
           <p>{post.body}</p>
-          <button onClick={() => deletePost(index)}>Delete</button>
+          <button
+            className={styles["post__delete-btn"]}
+            onClick={() => deletePost(index)}
+          >
+            Delete
+          </button>
         </div>
       ))}
     </div>
