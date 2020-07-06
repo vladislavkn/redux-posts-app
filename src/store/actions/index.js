@@ -1,1 +1,1 @@
-export { fetchPosts, addPost } from "./postsActions";
+export { fetchPosts, addPost, deletePost } from "./postsActions";

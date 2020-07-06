@@ -1,4 +1,4 @@
-import { FETCH_POSTS, ADD_POST } from "../types";
+import { FETCH_POSTS, ADD_POST, DELETE_POST } from "../types";
 const API_URL = "https://jsonplaceholder.typicode.com/posts";
 
 export const fetchPosts = () => (dispatch) => {
@@ -31,3 +31,9 @@ export const addPost = ({ title, body }) => (dispatch) => {
       })
     );
 };
+
+export const deletePost = (index) => (dispatch) =>
+  dispatch({
+    type: DELETE_POST,
+    payload: index,
+  });

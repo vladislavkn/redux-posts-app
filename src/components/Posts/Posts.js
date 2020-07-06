@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchPosts } from "../../store/actions";
+import { fetchPosts, deletePost } from "../../store/actions";
 import styles from "./Posts.module.css";
 
-const Posts = ({ posts, fetchPosts }) => {
+const Posts = ({ posts, fetchPosts, deletePost }) => {
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -12,10 +12,11 @@ const Posts = ({ posts, fetchPosts }) => {
   return (
     <div className={styles.container}>
       <h1>Posts</h1>
-      {posts.map((post) => (
-        <div className={styles.post} key={post.id}>
+      {posts.map((post, index) => (
+        <div className={styles.post} key={index}>
           <h4>{post.title}</h4>
           <p>{post.body}</p>
+          <button onClick={() => deletePost(index)}>Delete</button>
         </div>
       ))}
     </div>
@@ -29,4 +30,4 @@ Posts.propTypes = {
 
 const mapStateToProps = (state) => ({ posts: state.posts });
 
-export default connect(mapStateToProps, { fetchPosts })(Posts);
+export default connect(mapStateToProps, { fetchPosts, deletePost })(Posts);
