@@ -2,7 +2,7 @@ import { FETCH_POSTS, ADD_POST, DELETE_POST } from "../types";
 const API_URL = "https://jsonplaceholder.typicode.com/posts";
 
 export const fetchPosts = () => (dispatch) => {
-  fetch(`${API_URL}?_limit=1`)
+  fetch(`${API_URL}?_limit=10`)
     .then((res) => res.json())
     .then((res) =>
       dispatch({
