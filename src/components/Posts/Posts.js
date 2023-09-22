@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchPosts, deletePost } from "../../store/actions";
+import { deletePost } from "../../store/actions";
 import styles from "./Posts.module.css";
+import PostsService from "../../posts_service";
 
-const Posts = ({ posts, fetchPosts, deletePost }) => {
+const Posts = ({ posts, deletePost }) => {
   useEffect(() => {
-    fetchPosts();
+    PostsService.getIntance().getPosts();
   }, []);
 
   return (
@@ -35,4 +36,4 @@ Posts.propTypes = {
 
 const mapStateToProps = (state) => ({ posts: state.posts });
 
-export default connect(mapStateToProps, { fetchPosts, deletePost })(Posts);
+export default connect(mapStateToProps, { deletePost })(Posts);
