@@ -1,6 +1,6 @@
 import PostsFetcher from "./posts_fetcher";
 import store from "./store";
-import { FETCH_POSTS } from "./store/types";
+import { addPost, deletePost, setPosts } from "./store/actions";
 
 export default class PostsService {
   postFetcher = PostsFetcher.getIntance();
@@ -16,9 +16,15 @@ export default class PostsService {
 
   async getPosts() {
     const posts = await this.postFetcher.fetchPosts();
-    store.dispatch({
-      type: FETCH_POSTS,
-      payload: posts,
-    });
+    store.dispatch(setPosts(posts));
+  }
+
+  deletePost(postId) {
+    store.dispatch(deletePost(postId));
+  }
+
+  async addPost(post) {
+    const newPost = await this.postFetcher.addPost(post);
+    store.dispatch(addPost(newPost));
   }
 }

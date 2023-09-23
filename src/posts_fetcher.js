@@ -14,4 +14,16 @@ export default class PostsFetcher {
     const response = await fetch(`${this.API_URL}?_limit=${limit}`);
     return response.json();
   }
+
+  async addPost(post) {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(post),
+    });
+
+    return response.json();
+  }
 }

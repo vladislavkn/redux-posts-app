@@ -1,4 +1,4 @@
-import { FETCH_POSTS, ADD_POST, DELETE_POST } from "../types";
+import { FETCH_POSTS, ADD_POST, DELETE_POST } from "../actions";
 
 export default (state = [], { type, payload }) => {
   switch (type) {

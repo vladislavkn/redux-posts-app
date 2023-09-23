@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { addPost } from "../../store/actions";
 import styles from "./PostForm.module.css";
+import PostsService from "../../posts_service";
 
-const PostForm = ({ addPost }) => {
+const postService = PostsService.getIntance();
+
+const PostForm = () => {
   const [postBody, setPostBody] = useState("");
   const [postTitle, setPostTitle] = useState("");
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    addPost({ title: postTitle, body: postBody });
+    await postService.addPost({ title: postTitle, body: postBody });
     setPostBody("");
     setPostTitle("");
   };
@@ -40,8 +40,4 @@ const PostForm = ({ addPost }) => {
   );
 };
 
-PostForm.propTypes = {
-  addPost: PropTypes.func.isRequired,
-};
-
-export default connect(null, { addPost })(PostForm);
+export default PostForm;

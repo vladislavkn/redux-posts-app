@@ -1,13 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { deletePost } from "../../store/actions";
 import styles from "./Posts.module.css";
 import PostsService from "../../posts_service";
 
-const Posts = ({ posts, deletePost }) => {
+const postsService = PostsService.getIntance();
+
+const Posts = ({ posts }) => {
   useEffect(() => {
-    PostsService.getIntance().getPosts();
+    postsService.getPosts();
+  }, []);
+
+  const handleDeletePost = useCallback((postId) => {
+    postsService.deletePost(postId);
   }, []);
 
   return (
@@ -19,7 +24,7 @@ const Posts = ({ posts, deletePost }) => {
           <p>{post.body}</p>
           <button
             className={styles["post__delete-btn"]}
-            onClick={() => deletePost(index)}
+            onClick={() => handleDeletePost(post.id)}
           >
             Delete
           </button>
@@ -31,9 +36,8 @@ const Posts = ({ posts, deletePost }) => {
 
 Posts.propTypes = {
   posts: PropTypes.array.isRequired,
-  fetchPosts: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({ posts: state.posts });
 
-export default connect(mapStateToProps, { deletePost })(Posts);
+export default connect(mapStateToProps)(Posts);
