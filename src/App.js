@@ -1,13 +1,12 @@
 import React from "react";
 import { Provider } from "react-redux";
 import store from "./store";
-import PostForm from "./components/PostForm/PostForm";
-import Posts from "./components/Posts/Posts";
+import { PostsForm, PostsList } from "./posts";
 
 const App = () => (
   <Provider store={store}>
-    <PostForm />
-    <Posts />
+    <PostsForm />
+    <PostsList />
   </Provider>
 );
 
